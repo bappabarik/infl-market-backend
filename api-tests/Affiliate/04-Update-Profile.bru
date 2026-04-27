@@ -1,0 +1,22 @@
+meta {
+  name: 04 Update Affiliate Profile
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/affiliates/me
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "agency_name": "Rahul Digital Agency",
+    "default_commission_percent": 12.5
+  }
+}

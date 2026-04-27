@@ -1,0 +1,17 @@
+meta {
+  name: 04 Me (No Token - Should Fail)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/me
+  body: none
+  auth: none
+}
+
+docs {
+  Same /me endpoint but without any auth header.
+  Expected: 401 UNAUTHENTICATED.
+  This proves the JWT middleware is blocking unauthenticated requests.
+}

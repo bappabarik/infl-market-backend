@@ -1,0 +1,26 @@
+meta {
+  name: 01 Create Review
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/deals/{{dealId}}/reviews
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "rating": 5,
+    "comment": "Excellent content quality and delivered on time"
+  }
+}
+
+docs {
+  Deal must be completed. Brand reviews influencer, influencer reviews brand.
+}

@@ -1,0 +1,31 @@
+meta {
+  name: 02 Create Campaign
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/campaigns
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "title": "Summer Glow Launch",
+    "brief": "Promote our new Glow Serum to beauty-focused audiences",
+    "budget": 50000,
+    "start_date": "2026-05-01",
+    "end_date": "2026-05-31"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data && res.body.data.id) {
+    bru.setEnvVar("campaignId", res.body.data.id.toString());
+  }
+}

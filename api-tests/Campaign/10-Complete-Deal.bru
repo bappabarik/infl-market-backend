@@ -1,0 +1,20 @@
+meta {
+  name: 10 Complete Deal (as Brand)
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{baseUrl}}/deals/{{dealId}}/complete
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Must be logged in as brand. Deal must be 'approved'.
+  After completion, payment can be initiated.
+}

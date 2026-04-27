@@ -1,0 +1,24 @@
+meta {
+  name: 02 Register as Influencer
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "influencer@test.com",
+    "password": "Password123!",
+    "full_name": "Priya Sharma",
+    "role": "influencer"
+  }
+}
+
+docs {
+  Register a new influencer account. Auto-creates influencer profile.
+}

@@ -1,0 +1,20 @@
+meta {
+  name: 09 Approve Deal (as Brand)
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/deals/{{dealId}}/approve
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Must be logged in as the brand that owns the campaign.
+  Deal must be in 'submitted' status.
+}

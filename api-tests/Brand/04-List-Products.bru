@@ -1,0 +1,15 @@
+meta {
+  name: 04 List Products
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/brands/me/products
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

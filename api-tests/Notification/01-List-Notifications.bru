@@ -1,0 +1,15 @@
+meta {
+  name: 01 List My Notifications
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/notifications?page=1&limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

@@ -1,0 +1,20 @@
+meta {
+  name: 07 Accept Deal (as Influencer)
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/deals/{{dealId}}/accept
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  IMPORTANT: You must be logged in as the INFLUENCER assigned to this deal.
+  Run Influencer/03-Login-Influencer first to switch tokens.
+}

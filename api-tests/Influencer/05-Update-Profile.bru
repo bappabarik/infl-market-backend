@@ -1,0 +1,26 @@
+meta {
+  name: 05 Update My Profile
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/influencers/me
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "bio": "Beauty and lifestyle creator based in Mumbai",
+    "category_id": 6,
+    "location": "Mumbai, IN",
+    "languages": ["en", "hi"],
+    "base_cost_per_post": 5000,
+    "base_cost_per_video": 12000
+  }
+}

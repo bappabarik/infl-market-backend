@@ -1,0 +1,24 @@
+meta {
+  name: 01 Register
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "flow@gmail.com",
+    "password": "Password123!",
+    "full_name": "Flow Test 2",
+    "role": "brand"
+  }
+}
+
+docs {
+  Creates a new user account. Try changing the email each time you run, since registering the same email twice will fail.
+}

@@ -1,0 +1,31 @@
+meta {
+  name: 06 Add Social Account
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/influencers/me/social-accounts
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "platform": "instagram",
+    "handle": "priyasharma",
+    "profile_url": "https://instagram.com/priyasharma",
+    "followers_count": 125000,
+    "is_primary": true
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data && res.body.data.id) {
+    bru.setEnvVar("socialAccountId", res.body.data.id.toString());
+  }
+}

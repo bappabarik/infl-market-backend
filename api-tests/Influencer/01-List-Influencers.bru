@@ -1,0 +1,17 @@
+meta {
+  name: 01 List Influencers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/influencers?page=1&limit=10
+  body: none
+  auth: none
+}
+
+docs {
+  Public endpoint. No auth required.
+  Supports filters: category_id, min_followers, max_price, platform, q
+  Example: /influencers?platform=instagram&min_followers=10000&max_price=5000
+}

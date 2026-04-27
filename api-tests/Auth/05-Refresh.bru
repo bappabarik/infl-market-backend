@@ -1,0 +1,31 @@
+meta {
+  name: 05 Refresh Token
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/auth/refresh
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "refresh_token": "{{refreshToken}}"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data) {
+    bru.setEnvVar("accessToken", res.body.data.access_token);
+    bru.setEnvVar("refreshToken", res.body.data.refresh_token);
+    console.log("Tokens rotated and re-captured");
+  }
+}
+
+docs {
+  Exchanges the current refresh token for a new pair.
+  Auto-updates both tokens in the environment after success.
+  After this runs, the OLD refresh token is revoked - running this request again immediately should fail with 401.
+}

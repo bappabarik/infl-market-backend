@@ -1,0 +1,27 @@
+meta {
+  name: 08 Submit Deliverable (as Influencer)
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/deals/{{dealId}}/deliverables
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "post_url": "https://instagram.com/p/ABC123",
+    "notes": "Posted the sponsored content with required hashtags"
+  }
+}
+
+docs {
+  Must be logged in as the influencer assigned to this deal.
+  Deal must be in 'accepted' or 'in_progress' status.
+}

@@ -1,0 +1,34 @@
+meta {
+  name: 06 Logout
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/auth/logout
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "refresh_token": "{{refreshToken}}"
+  }
+}
+
+script:post-response {
+  if (res.status === 200) {
+    bru.setEnvVar("accessToken", "");
+    bru.setEnvVar("refreshToken", "");
+    console.log("Logged out, tokens cleared");
+  }
+}
+
+docs {
+  Revokes the current refresh token.
+  Clears both tokens from the environment after success - simulates logout state.
+}

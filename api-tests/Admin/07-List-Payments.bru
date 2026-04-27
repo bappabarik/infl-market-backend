@@ -1,0 +1,15 @@
+meta {
+  name: 07 List All Payments
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/admin/payments?page=1&limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

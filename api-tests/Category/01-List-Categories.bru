@@ -1,0 +1,15 @@
+meta {
+  name: 01 List Categories
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/categories
+  body: none
+  auth: none
+}
+
+docs {
+  Public endpoint. Returns all categories seeded in the database.
+}

@@ -1,0 +1,22 @@
+meta {
+  name: 11 List My Deals
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/deals/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Role-aware endpoint. Shows:
+  - Brands: all deals from their campaigns
+  - Influencers: all deals assigned to them
+  - Affiliates: all deals involving their influencers
+}

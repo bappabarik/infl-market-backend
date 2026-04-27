@@ -1,0 +1,45 @@
+meta {
+  name: 04 Hire Influencers
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/campaigns/{{campaignId}}/deals
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "hires": [
+      {
+        "influencer_id": 10,
+        "platform": "instagram",
+        "content_type": "post",
+        "quantity": 2,
+        "deadline": "2026-05-15"
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data && res.body.data.deals && res.body.data.deals.length > 0) {
+    bru.setEnvVar("dealId", res.body.data.deals[0].id.toString());
+  }
+}
+
+docs {
+  This is the core hiring flow. The pricing snapshot is frozen at deal creation:
+  - influencer base cost is read from their profile
+  - affiliate commission % is read from their affiliate
+  - platform commission % comes from settings
+  - All amounts are calculated and stored on the deal
+  
+  Change influencer_id to match an actual influencer in your DB.
+}

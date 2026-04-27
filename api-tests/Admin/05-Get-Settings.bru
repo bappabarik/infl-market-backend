@@ -1,0 +1,15 @@
+meta {
+  name: 05 Get Platform Settings
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/admin/settings
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

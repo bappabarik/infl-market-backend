@@ -1,0 +1,33 @@
+meta {
+  name: 02 Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "flow@gmail.com",
+    "password": "Password123!"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data) {
+    bru.setEnvVar("accessToken", res.body.data.access_token);
+    bru.setEnvVar("refreshToken", res.body.data.refresh_token);
+    console.log("Tokens captured successfully");
+  } else {
+    console.log("Login failed - no tokens captured");
+  }
+}
+
+docs {
+  Logs in and AUTOMATICALLY stores the access and refresh tokens in environment variables.
+  After this runs, all protected endpoints will use the captured token without you copy-pasting anything.
+}

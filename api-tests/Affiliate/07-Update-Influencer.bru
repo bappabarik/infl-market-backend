@@ -1,0 +1,23 @@
+meta {
+  name: 07 Update Onboarded Influencer
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/affiliates/me/influencers/{{affiliateInfluencerId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "base_cost_per_post": 5000,
+    "base_cost_per_video": 12000,
+    "bio": "Fashion and beauty influencer"
+  }
+}

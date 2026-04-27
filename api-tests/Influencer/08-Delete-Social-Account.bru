@@ -1,0 +1,15 @@
+meta {
+  name: 08 Delete Social Account
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/influencers/me/social-accounts/{{socialAccountId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

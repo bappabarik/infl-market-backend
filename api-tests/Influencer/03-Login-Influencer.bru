@@ -1,0 +1,29 @@
+meta {
+  name: 03 Login as Influencer
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "influencer@test.com",
+    "password": "Password123!"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data) {
+    bru.setEnvVar("accessToken", res.body.data.access_token);
+    bru.setEnvVar("refreshToken", res.body.data.refresh_token);
+  }
+}
+
+docs {
+  Login as the influencer and capture tokens.
+}

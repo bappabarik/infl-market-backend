@@ -1,0 +1,15 @@
+meta {
+  name: 04 Get My Influencer Profile
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/influencers/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\ResponseEmitter;
+
+use Psr\Http\Message\ResponseInterface;
+use Slim\ResponseEmitter as SlimResponseEmitter;
+
+class ResponseEmitter extends SlimResponseEmitter
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function emit(ResponseInterface $response): void
+    {
+        $allowedOrigins = array_filter(array_map('trim', explode(',', $_ENV['CORS_ALLOWED_ORIGINS'] ?? '')));
+        $requestOrigin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+        // Only echo back the origin if it's in the allow-list
+        $allowOrigin = in_array($requestOrigin, $allowedOrigins, true) ? $requestOrigin : '';
+
+        $response = $response
+            ->withHeader('Access-Control-Allow-Credentials', 'true')
+            ->withHeader('Access-Control-Allow-Origin', $allowOrigin)
+            ->withHeader(
+                'Access-Control-Allow-Headers',
+                'X-Requested-With, Content-Type, Accept, Origin, Authorization',
+            )
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+            ->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+            ->withAddedHeader('Cache-Control', 'post-check=0, pre-check=0')
+            ->withHeader('Pragma', 'no-cache');
+
+        if (ob_get_contents()) {
+            ob_clean();
+        }
+
+        parent::emit($response);
+    }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: 03 Me
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Returns the currently authenticated user.
+  Uses the access token captured by the Login request automatically.
+}

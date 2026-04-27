@@ -1,0 +1,22 @@
+meta {
+  name: 06 Update Platform Settings
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/admin/settings
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "default_platform_commission_percent": "18.00",
+    "min_payout_amount": "1000.00"
+  }
+}

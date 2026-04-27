@@ -1,0 +1,15 @@
+meta {
+  name: 02 Get Influencer Reviews
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/influencers/1/reviews
+  body: none
+  auth: none
+}
+
+docs {
+  Public endpoint. Returns all reviews for an influencer with average rating.
+}

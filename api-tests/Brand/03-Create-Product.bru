@@ -1,0 +1,29 @@
+meta {
+  name: 03 Create Product
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/brands/me/products
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "title": "Glow Serum",
+    "description": "Vitamin C brightening serum for radiant skin",
+    "campaign_goal": "Drive awareness and sales for Q1 launch"
+  }
+}
+
+script:post-response {
+  if (res.body && res.body.data && res.body.data.id) {
+    bru.setEnvVar("productId", res.body.data.id.toString());
+  }
+}

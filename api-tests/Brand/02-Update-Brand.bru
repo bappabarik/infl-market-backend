@@ -1,0 +1,23 @@
+meta {
+  name: 02 Update Brand
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{baseUrl}}/brands/me
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "Acme Cosmetics Updated",
+    "description": "Premium clean beauty brand",
+    "website": "https://acme-cosmetics.com"
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: 08 Get Earnings Summary
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/affiliates/me/earnings
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

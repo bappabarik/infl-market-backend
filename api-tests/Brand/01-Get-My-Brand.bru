@@ -1,0 +1,15 @@
+meta {
+  name: 01 Get My Brand
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/brands/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
